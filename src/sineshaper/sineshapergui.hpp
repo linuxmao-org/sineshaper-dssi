@@ -31,11 +31,11 @@ public:
   void program_selected(int bank, int program);
   
   /** This signal is emitted when the user selects a program in the GUI. */
-  signal<void, unsigned long, unsigned long> signal_select_program;
+  sigc::signal<void, unsigned long, unsigned long> signal_select_program;
   
   /** This signal is emitted when the user has edited the programs and 
       the plugin needs to reload the file with the user presets. */
-  signal<void> signal_programs_changed;
+  sigc::signal<void> signal_programs_changed;
   
 protected:
   

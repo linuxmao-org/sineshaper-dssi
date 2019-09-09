@@ -38,7 +38,6 @@
 using namespace Glib;
 using namespace Gnome::Glade;
 using namespace Gtk;
-using namespace sigc;
 using namespace std;
 
 
@@ -99,13 +98,13 @@ public:
   // Host to UI
   /** This signal is emitted when the host sends a new control value.
       The parameters are the control port number and the new control value. */
-  signal<void, int, float> control_received;
+  sigc::signal<void, int, float> control_received;
   /** Emitted when the host sends a program change. The parameters are the 
       bank and program numbers. */
-  signal<void, int, int> program_received;
+  sigc::signal<void, int, int> program_received;
   /** Emitted when the host sends a configuration value. The parameters are
       the configuration key and the configuration value. */
-  signal<void, const string, const string> configure_received;
+  sigc::signal<void, const string, const string> configure_received;
   /** Emitted when the host wants the UI to be visible. A DSSI GUI should not
       show any windows until this signal is emitted. */
   Dispatcher show_received;
@@ -134,7 +133,7 @@ public:
   void* allocate_shared_memory(int bytes);
   
   /** Emitted when the plugin has attached to the shared memory segment. */
-  signal<void> plugin_attached;
+  sigc::signal<void> plugin_attached;
   
   /** Returns true if the plugin has attached to the shared memory segment. */
   bool plugin_has_attached();
