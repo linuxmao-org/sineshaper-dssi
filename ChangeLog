@@ -1,0 +1,16 @@
+Version 0.4.2, released 2005-10-29:
+	* Fixed a bug that slowed down frequency changes caused by pitchbend
+	  events (reported by Christoph Eckert)
+	* Reduced the parameter slide time to speed up parameter changes
+	* Changed the initial velocity to 0.5 (64 in MIDI)
+	* Added DSSI_CFLAGS to the compiler flags for the sineshaper plugin
+	  since it uses dssi.h indirectly (reported by Willem van Engen)
+
+Version 0.4.1, released 2005-10-23 (a few hours later):
+	* Fixed a bug in the Sineshaper GUI that could stop the GUI from
+	  loading the factory presets (reported by tapas on #lad)
+	* Added a check for gtkmm >= 2.6.0 in configure.ac (reported by
+	  Christoph Eckert)
+
+Version 0.4.0, released 2005-10-23:
+	This is the first release

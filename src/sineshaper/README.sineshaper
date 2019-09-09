@@ -1,0 +1,73 @@
+SINESHAPER
+======================================================================
+This is a DSSI synth plugin, which means that it needs a DSSI host to
+run in. There are several DSSI hosts available (look at 
+http://dssi.sourceforge.net for a list), for example jack-dssi-host
+which comes with the DSSI development package. The script
+sineshaper.sh will run jack-dssi-host and load the Sineshaper plugin.
+
+The Sineshaper synth has two sine oscillators and two waveshapers.
+The sound from the two oscillators is mixed and passed through the 
+waveshapers, first through the first waveshaper and then the second. 
+You can control the tuning of both oscillators as well as their 
+relative loudness, and the total amount of shaping and the fraction of 
+that amount that each shaper applies. Both waveshapers use a sine 
+function for shaping the sound, but for the second shaper you can shift
+the sine function (with maximal shift it becomes a cosine function) to
+produce a different sound.
+
+You can also add vibrato and tremolo, and change the ADSR envelope
+that controls the amplitude and shape amount (as well as setting the
+envelope sensitivity for both the amplifier and the shapers). There
+is also a "Drive" control that adds distorsion, and a feedback delay
+with controllable delay time and feedback amount.
+
+The Sineshaper synth comes with some presets that you can play or use
+as starting points for your own synth settings. You can not change
+these "factory presets", but you can create and save your own presets.
+They are written to the file .sineshaperpresets in your home directory.
+If you make any nice presets I would really like to hear them.
+
+You change the synth settings by changing the values of the knobs and
+other controls in the GUI. If you want better accuracy for the knobs,
+you can right-click them to get a numerical display where you can type
+in a value directly. Press the Escape key when you're done to hide the
+display again.
+
+All control ports in the Sineshaper synth can also be set using MIDI
+controller messages. The controller numbers used are:
+
+ * Tune                           16
+ * Octave                         17
+ * Sub oscillator tune            18
+ * Sub oscillator octave          19
+ * Oscillator mix                 95
+ * Portamento on                  65
+ * Portamento time                5
+ * Tie overlapping notes          68
+ * Vibrato frequency              2
+ * Vibrato depth                  1
+ * Tremolo frequency              75
+ * Tremolo depth                  92
+ * Shaper envelope sensitivity    71
+ * Shape amount                   94
+ * Shape split                    70
+ * Shape shift                    76
+ * Shaper LFO frequency           77
+ * Shaper LFO depth               78
+ * Attack                         73
+ * Decay                          4
+ * Sustain                        79
+ * Release                        72
+ * Amp envelope sensitivity       93
+ * Drive                          94
+ * Gain                           7
+ * Delay time                     12
+ * Delay feedback                 13
+ * Delay mix                      91
+
+
+New versions of this and other plugins will be available at 
+http://ll-plugins.sf.net
+
+Send bug reports, comments, or preset files to larsl@users.sourceforge.net
