@@ -21,6 +21,7 @@
 
 ****************************************************************************/
 
+#include <inttypes.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -61,7 +62,7 @@ void* dssi_shm_allocate(size_t bytes, char** keystring, char** used_flag) {
     sprintf((char*)shared_buffer + bytes + i, "%X", rand() % 16);
   
   /* give the caller a key to send to the plugin */
-  sprintf(*keystring, "%X:%s:%X", shm_id, (char*)shared_buffer + bytes, bytes);
+  sprintf(*keystring, "%X:%s:%" PRIxPTR, shm_id, (char*)shared_buffer + bytes, (uintptr_t)shared_buffer);
 
   /* set the USED flag to 0 (it should be 0 already, but there's no harm in
      setting it explicitly) */
@@ -107,7 +108,7 @@ void* dssi_shm_attach(const char* key, void* old_ptr) {
     return NULL;
   }
   if (shminfo.shm_segsz < bytes + 9) {
-    fprintf(stderr, "The segment is too small: %u < %d\n", 
+    fprintf(stderr, "The segment is too small: %zu < %d\n",
 	    shminfo.shm_segsz, bytes + 9);
     return NULL;
   }
@@ -140,9 +141,10 @@ void* dssi_shm_attach(const char* key, void* old_ptr) {
 
 
 int dssi_shm_free(const char* key) {
-  unsigned int shm_id, ptr_int;
-  if (sscanf(key, "%X:%*X:%X", &shm_id, &ptr_int) < 1)
-    shm_id = -1;
+  unsigned int shm_id;
+  uintptr_t ptr_int;
+  if (sscanf(key, "%X:%*X:%" SCNxPTR, &shm_id, &ptr_int) != 2)
+    return -1;
   shmdt((void*)ptr_int);
   return shmctl(shm_id, IPC_RMID, NULL);
 }
