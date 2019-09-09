@@ -40,8 +40,8 @@ AC_MSG_RESULT($dssidir)
 AC_SUBST(dssidir)
 	
 # Checking whether to build with optimisation flags or debug flags
-debug_cflags="-g -O2 -Wall -Werror -ansi -pedantic"
-opt_cflags="-O3 -fomit-frame-pointer -fstrength-reduce -funroll-loops -ffast-math -DNDEBUG -Wall -ansi -pedantic"
+debug_cflags="-g -O2 -Wall"
+opt_cflags="-O3 -fomit-frame-pointer -fstrength-reduce -funroll-loops -ffast-math -DNDEBUG -Wall"
 AC_MSG_CHECKING([whether to build with debugging info])
 AC_ARG_ENABLE(debug, AS_HELP_STRING([--enable-debug], [build with debugging information (may slow down execution)]))
 if test x$enable_debug == xyes; then
